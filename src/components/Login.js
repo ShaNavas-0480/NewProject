@@ -17,40 +17,21 @@ function Login() {
     console.log(loginCredentials);
 
     apiService
-      .post("/MadaSim/UserSec/LoginWithCredentials", {
-        Username: loginCredentials.username,
-        Password: loginCredentials.password,
-      })
+      .post(
+        "/UserSec/LoginWithCredentials",
+        {},
+        {
+          auth: {
+            Username: loginCredentials.username,
+            Password: loginCredentials.password,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
-        let sampleResponse = [
-          {
-            token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwibmJmIjoxNjc5MTI5NTQ0LCJleHAiOjE2NzkxMzEzNDQsImlhdCI6MTY3OTEyOTU0NH0.F1eYuuCZQcc9713lpvhxMgCuDywLIKSPr5DMgnSddns",
-          },
-          {
-            pid: 1,
-            description: "Listing the users",
-            url: "/MadaSim/UserSec/ListUserProfiles",
-          },
-          {
-            pid: 2,
-            description: "Test Execution ",
-            url: "MadaSim/MadaMsgBuilder/ExecuteTest",
-          },
-          {
-            pid: 3,
-            description: "Echo Msg Testing",
-            url: "MadaSim/MadaMsgBuilder/TestEchoMsg",
-          },
-          {
-            pid: 4,
-            description: "Login with User name Pass",
-            url: "MadaSim/MadaMsgBuilder/LoginWithCredentials",
-          },
-        ];
-        let authToken = sampleResponse[0].token;
-        localStorage.setItem("authToken", authToken);
+
+        // let authToken = sampleResponse[0].token;
+        // localStorage.setItem("authToken", authToken);
 
         navigate("/home");
       })
