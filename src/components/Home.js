@@ -1,12 +1,19 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import SidebarMenu from "./SidebarMenu";
+import { Outlet } from "react-router-dom";
 
 function Home() {
+  // const { collapseSidebar } = useProSidebar();
   return (
     <div>
       <Navbar />
-      <Sidebar />
+      <div className="d-flex ">
+        <SidebarMenu />
+        <div className="p-5 w-100">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }

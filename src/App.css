@@ -1,30 +1,26 @@
-body{
-  background-color: #FCFCFC
-  ;
+body {
+  background-color: #fcfcfc;
 }
 
-
-.main-container{
-min-height: 100vh;
+.main-container {
+  min-height: 100vh;
 }
 
-.login-container{
-  height:100vh;
+.login-container {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
-.login-container .card{
-border:none
+.login-container .card {
+  border: none;
 }
-.login-container label{
+.login-container label {
   width: 100%;
-  font-weight: 600 ;
+  font-weight: 600;
   font-size: 1em;
-  width:16rem;
-  font-color:#232323
+  width: 16rem;
+  font-color: #232323;
 }
 .input-group .btn {
   left: -2.5rem;
@@ -35,91 +31,117 @@ border:none
   border: none !important;
 }
 
-.search-box input{
-  border-right :1px solid #dee2e6  !important
+.search-box input {
+  border-right: 1px solid #dee2e6 !important;
 }
-.form-control{
+.form-control {
   border-radius: 1px;
-    margin-top: 0.5em;
-    font-size: 0.8rem;
+  margin-top: 0.5em;
+  font-size: 0.8rem;
 }
 
-.login-container button,.user-management button ,.configuration button{
+.login-container button,
+.user-management button,
+.groups button,
+.permissions button,
+.configuration button {
   border-radius: 3px;
   padding: 0.5em 3em;
-  background-color: #1A3387;  
-  border:none;
+  background-color: #1a3387;
+  border: none;
   font-weight: 600;
-  border: 1px solid #1A3387;
+  border: 1px solid #1a3387;
 }
 
-
-.login-container button:hover,.user-management button:hover,.configuration button:hover{
+.login-container button:hover,
+.user-management button:hover,
+.configuration button:hover,
+.groups button:hover,
+.permissions button:hover {
   border-radius: 3px;
   padding: 0.5em 3em;
-  background-color: white;  
-  border:none;
+  background-color: white;
+  border: none;
   font-weight: 600;
-  color:#1A3387;
-  border: 1px solid #1A3387;
+  color: #1a3387;
+  border: 1px solid #1a3387;
+  transition: all 0.3s;
 }
 
-.user-management button,.user-management button:hover,.configuration button,.configuration button:hover{
-  padding:0.4rem 2rem}
+.user-management button,
+.user-management button:hover,
+.configuration button,
+.configuration button:hover {
+  padding: 0.4rem 2rem;
+}
 
 .navbar {
   height: 4rem;
 }
 
-.sidebar{
-  height:90vh;
-  border-right:none ;
+.sidebar {
+  height: 90vh;
+  border-right: none;
   box-shadow: 0px 44px 133px rgba(28, 56, 146, 0.16);
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
 }
-.nav-item{
+.nav-item {
   margin-top: 0.5rem;
-  
 }
-.nav-item a{
-  color:rgba(35, 35, 35, 0.5);
-  padding:0.7rem 0
+.nav-item a {
+  color: rgba(35, 35, 35, 0.5);
+  padding: 0.7rem 0;
 }
-.user-management .input-group-append button{
+.user-management .input-group-append button {
   padding: 0.4rem 0.7rem;
 }
-.search-box{
+.search-box {
   margin-right: 1.5rem;
 }
-.nav-pills .nav-link.active{
+.nav-pills .nav-link.active {
   background: white;
-    color: #1A3387;
-    border-right: 3px solid;
-    border-radius: 3px;
-    box-shadow: 0px 14px 31px rgba(28, 56, 146, 0.1);
-    padding:0.5rem 0em 0.5rem 0.3rem; 
+  color: #1a3387;
+  border-right: 3px solid;
+  border-radius: 3px;
+  box-shadow: 0px 14px 31px rgba(28, 56, 146, 0.1);
+  padding: 0.5rem 0em 0.5rem 0.3rem;
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   position: absolute;
   left: -7rem;
 }
-.navbar-expand-lg .navbar-nav .dropdown-menu a{
-  padding:0.5rem 1rem;
+.navbar-expand-lg .navbar-nav .dropdown-menu a {
+  padding: 0.5rem 1rem;
 }
 
-.user-management label,.configuration label{
+.user-management label,
+.configuration label,
+.groups label,
+.permissions label {
   font-size: 13px;
   font-weight: 600;
-  width:14rem;
+  width: 14rem;
 }
 
-.smaller-text{
+.smaller-text {
   font-size: 12px;
   font-weight: 600;
 }
 
 .form-control:focus {
-  outline :none;
+  outline: none;
   box-shadow: none;
+}
+
+span.eye-icon {
+  right: 5rem;
+  bottom: 7rem;
+  cursor: pointer;
+}
+
+.loginLoader > .spinner-border {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-width: 0.15rem;
 }

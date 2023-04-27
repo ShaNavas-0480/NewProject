@@ -1,13 +1,23 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-function UserManagement() {
+function Groups() {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = () => {};
   return (
     <>
-      <div className="user-management container-fluid">
+      {" "}
+      <div className="groups container-fluid">
         <div className="d-flex justify-content-between">
-          <h3>UserManagement</h3>
+          <h3>Groups</h3>
           <div className="search-box w-25 mt-1">
             <div className="input-group ">
               <input
@@ -28,96 +38,108 @@ function UserManagement() {
           </div>
         </div>
         <div className="form mt-3">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
               <div className="col">
                 <div className="">
                   <label>
                     {" "}
-                    First Name
+                    Group ID
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter FirstName"
+                      placeholder="Group ID"
+                      {...register("groupID", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
+                {errors.groupID && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.groupID.message}
+                  </span>
+                )}
                 <div className=" mt-3">
                   <label>
                     {" "}
-                    Email
+                    Group Status ID
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Email"
+                      placeholder="Group Status ID"
+                      {...register("groupStatusID", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
+                {errors.email && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.email.message}
+                  </span>
+                )}
                 <div className="mt-3">
                   <label>
                     {" "}
-                    Department
+                    Date Modified
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Enter Department"
+                      {...register("department", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
-                <div className="mt-3">
-                  <label>
-                    {" "}
-                    User ID
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter Department"
-                    />
-                  </label>
-                </div>
+                {errors.department && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.department.message}
+                  </span>
+                )}
               </div>
               <div className="col">
                 <div className="">
                   <label>
                     {" "}
-                    Middle Name
+                    Group Name
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Middle Name"
+                      placeholder="Enter Group Name"
+                      {...register("groupName")}
                     />
                   </label>
                 </div>
                 <div className=" mt-3">
                   <label>
                     {" "}
-                    Phone Number
+                    Date Created
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
-                      placeholder="Enter Phone Number"
+                      placeholder="date created"
+                      {...register("date_created", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
+                {errors.user_tel_no && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.user_tel_no.message}
+                  </span>
+                )}
                 <div className="mt-3">
                   <label>
                     {" "}
-                    Section
+                    Modified By
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Enter Section"
-                    />
-                  </label>
-                </div>
-                <div className="mt-3">
-                  <label>
-                    {" "}
-                    User Group
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter User Group"
+                      {...register("section")}
                     />
                   </label>
                 </div>
@@ -126,52 +148,74 @@ function UserManagement() {
                 <div className="">
                   <label>
                     {" "}
-                    Last Name
+                    Group Description
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Last Name"
+                      placeholder="Enter Group Description"
+                      {...register("groupDescription", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
+                {errors.lastName && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.lastName.message}
+                  </span>
+                )}
                 <div className=" mt-3">
                   <label>
                     {" "}
-                    Extension
+                    Created By
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Extension"
+                      placeholder="Enter Created By"
+                      {...register("tel_exten", {
+                        required: "Required",
+                      })}
                     />
                   </label>
                 </div>
+                {errors.tel_exten && (
+                  <span className="text-danger smaller-text" role="alert">
+                    {errors.tel_exten.message}
+                  </span>
+                )}
               </div>
             </div>
             <div className="row mt-3">
               <div className="">
-                <label>
+                <label className="w-75">
                   {" "}
-                  Password
+                  Group Mail
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Enter Password"
+                    placeholder="Enter Group Mail"
+                    {...register("password", {
+                      required: "Required",
+                    })}
                   />
                 </label>
               </div>
+              {errors.password && (
+                <span className="text-danger smaller-text" role="alert">
+                  {errors.password.message}
+                </span>
+              )}
             </div>
             <div className="row mt-3">
               <div className="mt-2 action-buttons">
-                <Button type="button">Add</Button>
+                <Button type="submit">Add</Button>
                 <Button type="button" className="ms-3">
                   Modify
                 </Button>
                 <Button type="button" className="ms-3">
                   Delete
                 </Button>
-                <Button type="button" className="ms-3">
-                  Set Password
-                </Button>
+
                 <Button type="button" className="ms-3">
                   Cancel
                 </Button>
@@ -184,4 +228,4 @@ function UserManagement() {
   );
 }
 
-export default UserManagement;
+export default Groups;
