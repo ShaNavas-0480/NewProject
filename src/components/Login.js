@@ -62,9 +62,9 @@ function Login() {
     <div>
       <div className="container login-container ">
         <div className="">
-          <Card style={{ width: "25rem" }} className="shadow">
+          <Card className="shadow login">
             <div className="d-flex justify-content-center p-4">
-              <h4>Login</h4>
+              <h3>Login</h3>
             </div>
             <Card.Body>
               <div className="">

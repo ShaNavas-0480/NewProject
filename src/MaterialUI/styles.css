@@ -1,0 +1,17 @@
+.main-drawer .css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  background-color: white;
+  color: black;
+}
+
+.main-drawer .css-1191obr-MuiPaper-root-MuiAppBar-root {
+  background-color: white;
+  color: black;
+}
+.button-primary.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background: white;
+  color: #0578ed;
+}
+.button-primary.css-sghohy-MuiButtonBase-root-MuiButton-root:hover {
+  background: #0578ed;
+  color: white;
+}

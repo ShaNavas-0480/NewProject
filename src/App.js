@@ -12,6 +12,11 @@ import Groups from "./components/UserManagement/Groups";
 import Permissions from "./components/UserManagement/Permissions";
 import Users from "./components/UserManagement/Users";
 import Configuration from "./components/Configuration";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import MainHome from "./MaterialUI/MainHome/MainHome";
 
 function App() {
   return (
@@ -20,7 +25,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" exact element={<Login />} />
-            <Route
+
+            {/* <Route
               path="/home"
               exact
               element={
@@ -37,7 +43,9 @@ function App() {
                 exact
                 element={<Configuration />}
               />
-            </Route>
+            </Route> */}
+            {/* Material UI navigations */}
+            <Route path="/home" element={<MainHome />} />
           </Routes>
         </Router>
       </div>
