@@ -17,6 +17,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import MainHome from "./MaterialUI/MainHome/MainHome";
+import CreateGroup from "./MaterialUI/Groups/CreateGroup";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             </Route> */}
             {/* Material UI navigations */}
             <Route path="/home" element={<MainHome />} />
+            <Route path="/group/add" element={<CreateGroup />} />
           </Routes>
         </Router>
       </div>

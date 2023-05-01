@@ -15,3 +15,14 @@
   background: #0578ed;
   color: white;
 }
+.side-sub-menu-list.css-13eg511-MuiButtonBase-root-MuiListItemButton-root {
+  padding-left: 24px;
+}
+
+.side-menu-drawer.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
+  width: 250px;
+}
+
+.side-menu-list .css-cveggr-MuiListItemIcon-root {
+  min-width: 49px;
+}

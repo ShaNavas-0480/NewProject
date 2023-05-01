@@ -48,6 +48,7 @@ function Login() {
         console.log(response);
         let token = response.data[0].token;
         localStorage.setItem("token", token);
+        localStorage.setItem("username", loginCredentials.username);
         setShowSpinner(false);
         navigate("/home");
       })

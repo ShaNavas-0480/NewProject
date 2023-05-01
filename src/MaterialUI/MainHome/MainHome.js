@@ -32,8 +32,12 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import GroupTable from "../GroupTable";
+import GroupTable from "../Groups/GroupTable";
 import AddIcon from "@mui/icons-material/Add";
+import Group from "../Groups/GroupHome";
+import Users from "../../components/UserManagement/Users";
+import GroupHome from "../Groups/GroupHome";
+import UserHome from "../Users/UserHome";
 function MainHome() {
   const [open, setOpen] = useState(false);
   const [openList, setOpenList] = useState(false);
@@ -116,6 +120,19 @@ function MainHome() {
     }),
   }));
 
+  const [isShowGroups, setIsShowGroups] = useState(true);
+  const [isShowUsers, setIsShowUsers] = useState(false);
+
+  const handleMenuClick = (value) => {
+    if (value === "users") {
+      setIsShowGroups(false);
+      setIsShowUsers(true);
+    } else if (value === "groups") {
+      setIsShowUsers(false);
+      setIsShowGroups(true);
+    }
+  };
+
   return (
     <>
       <div className="main-drawer">
@@ -145,7 +162,7 @@ function MainHome() {
               </div>
             </div>
           </AppBar>
-          <Drawer variant="permanent" open={open}>
+          <Drawer className="side-menu-drawer" variant="permanent" open={open}>
             <DrawerHeader>
               <IconButton onClick={handleDrawerClose}>
                 {theme.direction === "rtl" ? (
@@ -158,6 +175,7 @@ function MainHome() {
             <Divider />
 
             <List
+              className="side-menu-list"
               sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
               component="nav"
               aria-labelledby="nested-list-subheader"
@@ -169,19 +187,32 @@ function MainHome() {
                 <ListItemText primary="User Management" />
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openList} timeout="auto" unmountOnExit>
+              <Collapse
+                className="side-menu-list-collapse"
+                in={openList}
+                timeout="auto"
+                unmountOnExit
+              >
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <AdminPanelSettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="User" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("groups")}
+                  >
                     <ListItemIcon>
                       <GroupsIcon />
                     </ListItemIcon>
                     <ListItemText primary="Groups" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("users")}
+                  >
+                    <ListItemIcon>
+                      <AdminPanelSettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="User" />
                   </ListItemButton>
                 </List>
               </Collapse>
@@ -237,20 +268,8 @@ function MainHome() {
           </Drawer>
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <DrawerHeader />
-            <div className="p-3">
-              <div className="create-button d-flex justify-content-end">
-                <div className="p-3">
-                  <Button
-                    variant="contained"
-                    className="button-primary"
-                    startIcon={<AddIcon />}
-                  >
-                    Create
-                  </Button>
-                </div>
-              </div>
-              <GroupTable />
-            </div>
+            {isShowGroups && <GroupHome />}
+            {isShowUsers && <UserHome />}
           </Box>
         </Box>
       </div>
