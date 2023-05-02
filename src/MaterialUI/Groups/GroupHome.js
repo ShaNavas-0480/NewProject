@@ -33,51 +33,51 @@ function GroupHome() {
   };
   return (
     <div>
-      <Paper elevation={12} square>
-        <div className="p-3">
-          {showGroupCreate ? (
-            <>
-              <div className="create-button  ">
-                <div className="d-flex justify-content-between p-3">
-                  <h3>Create Group</h3>
-                  <Button
-                    variant="contained"
-                    className="button-primary"
-                    startIcon={<ArrowBackIosIcon />}
-                    onClick={() => {
-                      setShowGroupCreate(false);
-                    }}
-                  >
-                    Back
-                  </Button>
-                </div>
+      {/* <Paper elevation={12} square> */}
+      <div className="p-3">
+        {showGroupCreate ? (
+          <>
+            <div className="create-button  ">
+              <div className="d-flex justify-content-between p-3">
+                <h3>Create Group</h3>
+                <Button
+                  variant="contained"
+                  className="button-primary"
+                  startIcon={<ArrowBackIosIcon />}
+                  onClick={() => {
+                    setShowGroupCreate(false);
+                  }}
+                >
+                  Back
+                </Button>
               </div>
-              <CreateGroup />
-            </>
-          ) : (
-            <>
-              {" "}
-              <div className="create-button  ">
-                <div className="d-flex justify-content-between p-3">
-                  <h3>Groups</h3>
-                  <Button
-                    variant="contained"
-                    className="button-primary"
-                    startIcon={<AddIcon />}
-                    // onClick={() => {
-                    //   setShowGroupCreate(true);
-                    // }}
-                    onClick={handleOpen}
-                  >
-                    Create
-                  </Button>
-                </div>
+            </div>
+            <CreateGroup />
+          </>
+        ) : (
+          <>
+            {" "}
+            <div className="create-button  ">
+              <div className="d-flex justify-content-between p-3">
+                <h3>Groups</h3>
+                <Button
+                  variant="contained"
+                  className="button-primary"
+                  startIcon={<AddIcon />}
+                  // onClick={() => {
+                  //   setShowGroupCreate(true);
+                  // }}
+                  onClick={handleOpen}
+                >
+                  Create
+                </Button>
               </div>
-              <GroupTable isRefreshTableData={isRefreshTableData} />
-            </>
-          )}
-        </div>
-      </Paper>
+            </div>
+            <GroupTable isRefreshTableData={isRefreshTableData} />
+          </>
+        )}
+      </div>
+      {/* </Paper> */}
       <Modal
         open={openModal}
         // onClose={handleClose}

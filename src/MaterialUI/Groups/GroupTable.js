@@ -1,10 +1,13 @@
 import {
+  Box,
   Button,
+  Modal,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
   TablePagination,
   TableRow,
@@ -16,10 +19,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditGroup from "./EditGroup";
+import { TableRows } from "@mui/icons-material";
+import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 function GroupTable({ isRefreshTableData }) {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [tableData, setTableData] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(0);
   useEffect(() => {
     listGroups();
 
@@ -58,12 +65,33 @@ function GroupTable({ isRefreshTableData }) {
     setPage(newPage);
   };
 
+  const [openModal, setOpenModal] = useState(false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 600,
+    bgcolor: "background.paper",
+    border: "none",
+    boxShadow: 24,
+    p: 4,
+  };
+  const handleClose = () => setOpenModal(false);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const handleEdit = () => {};
-  const handleDelete = () => {};
+  const handleEdit = (e) => {
+    console.log(e);
+    setSelectedRow(e);
+    setOpenModal(true);
+  };
+  // const handleDelete = (e) => {};
+
+  const handleTableDataRefresh = () => {
+    listGroups();
+  };
 
   return (
     <>
@@ -84,7 +112,13 @@ function GroupTable({ isRefreshTableData }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tableData.map((row) => (
+            {(rowsPerPage > 0
+              ? tableData.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : tableData
+            ).map((row) => (
               <TableRow
                 key={row.gid}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -102,30 +136,55 @@ function GroupTable({ isRefreshTableData }) {
                 <TableCell>{row.modified_by}</TableCell>
                 <TableCell>{row.modify_date}</TableCell>
                 <TableCell>
-                  <span onClick={handleEdit}>
+                  <span onClick={() => handleEdit(row)}>
                     <Button>
                       <ModeEditIcon />
                     </Button>
                   </span>{" "}
-                  &nbsp;{" "}
-                  <span onClick={handleDelete}>
+                  {/* &nbsp;{" "}
+                  <span onClick={() => handleDelete(row)}>
                     <DeleteIcon />{" "}
-                  </span>
+                  </span> */}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={3}
+                count={tableData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    "aria-label": "rows per page",
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={tableData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      <Modal
+        open={openModal}
+        // onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditGroup
+            handleClose={handleClose}
+            handleTableDataRefresh={handleTableDataRefresh}
+            selectedRowData={selectedRow}
+          />
+        </Box>
+      </Modal>
     </>
   );
 }
