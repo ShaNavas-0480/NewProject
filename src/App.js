@@ -18,6 +18,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import MainHome from "./MaterialUI/MainHome/MainHome";
 import CreateGroup from "./MaterialUI/Groups/CreateGroup";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   return (

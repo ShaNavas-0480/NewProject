@@ -5,10 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import CreateUser from "./CreateUser";
+import UserTable from "./UserTable";
 
 function UserHome() {
-  const [showGroupCreate, setShowGroupCreate] = useState(false);
-  useEffect(() => {}, [showGroupCreate]);
+  const [showUserCreate, setShowUserCreate] = useState(false);
+  useEffect(() => {}, [showUserCreate]);
   const [isRefreshTableData, setIsRefreshTableData] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
@@ -29,11 +30,14 @@ function UserHome() {
   const handleTableDataRefresh = () => {
     setIsRefreshTableData(true);
   };
+  const handleCancel = () => {
+    setShowUserCreate(false);
+  };
   return (
     <div>
       {/* <Paper elevation={12} square> */}
       <div className="p-3">
-        {showGroupCreate ? (
+        {showUserCreate ? (
           <>
             <div className="create-button  ">
               <div className="d-flex justify-content-between p-3">
@@ -43,14 +47,14 @@ function UserHome() {
                   className="button-primary"
                   startIcon={<ArrowBackIosIcon />}
                   onClick={() => {
-                    setShowGroupCreate(false);
+                    setShowUserCreate(false);
                   }}
                 >
                   Back
                 </Button>
               </div>
             </div>
-            <CreateUser />
+            <CreateUser handleCancel={handleCancel} />
           </>
         ) : (
           <>
@@ -62,10 +66,9 @@ function UserHome() {
                   variant="contained"
                   className="button-primary"
                   startIcon={<AddIcon />}
-                  // onClick={() => {
-                  //   setShowGroupCreate(true);
-                  // }}
-                  onClick={handleOpen}
+                  onClick={() => {
+                    setShowUserCreate(true);
+                  }}
                 >
                   Create
                 </Button>
@@ -76,19 +79,6 @@ function UserHome() {
         )}
       </div>
       {/* </Paper> */}
-      <Modal
-        open={openModal}
-        // onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <CreateUser
-          // handleClose={handleClose}
-          // handleTableDataRefresh={handleTableDataRefresh}
-          />
-        </Box>
-      </Modal>
     </div>
   );
 }

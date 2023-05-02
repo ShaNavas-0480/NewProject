@@ -165,3 +165,42 @@ span.eye-icon {
   width: 1.5rem;
   border-width: 0.15rem;
 }
+
+.create-user label {
+  width: 75%;
+}
+
+label.group-select {
+  width: 37%;
+}
+
+.delete-card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+}
+
+.delete-card-body .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.2rem;
+}
+
+.highlight-name {
+  font-weight: 600;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.alert-delete-text {
+  font-size: 18px;
+}
+
+.warning-icon svg {
+  font-size: 40px;
+  color: red;
+}
