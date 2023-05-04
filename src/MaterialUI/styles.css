@@ -26,3 +26,14 @@
 .side-menu-list .css-cveggr-MuiListItemIcon-root {
   min-width: 49px;
 }
+.user-profile {
+  margin: 0 5rem 0 1rem;
+}
+
+.user-profile a {
+  color: black;
+}
+.user-profile a.dropdown-item {
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+}

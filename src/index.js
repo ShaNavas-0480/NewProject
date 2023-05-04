@@ -6,15 +6,19 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <ProSidebarProvider>
-      <App />
-    </ProSidebarProvider>
-  </QueryClientProvider>
+  // <QueryClientProvider client={queryClient}>
+  // <ProSidebarProvider>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  // </ProSidebarProvider>
+  // </QueryClientProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -11,6 +11,7 @@ import moment from "moment/moment";
 
 function CreateUser({ handleCancel }) {
   const token = localStorage.getItem("token");
+  const isLDAP = process.env.REACT_APP_LDAP;
   const {
     register,
     handleSubmit,
@@ -34,36 +35,37 @@ function CreateUser({ handleCancel }) {
     data["pass_exp_date"] = passwordExpiryDate;
     data["super_user"] = 1;
     data["landing_url"] = null;
+    data["user_id"] = "";
     console.log(data);
 
-    // APIService.post(
-    //   process.env.REACT_APP_LOCAL_HOST_URL + "/UserSec/CreateUser",
-    //   data,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Origin": "*",
-    //       Authorization: token ? `Bearer ${token}` : "",
-    //     },
-    //   }
-    // )
-    //   .then((response) => {
-    //     console.log(response);
-    //     // handleTableDataRefresh();
-    //     handleCancel();
-    //     reset();
-    //     toast.success("User created Successfully");
-    //   })
-    //   .catch((errors) => {
-    //     console.log(errors);
-    //     if (errors.response && errors.response.status === 440) {
-    //       toast.warn("Session Timed Out");
-    //       localStorage.clear();
-    //       navigate("/");
+    APIService.post(
+      process.env.REACT_APP_LOCAL_HOST_URL + "/UserSec/CreateUser",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        // handleTableDataRefresh();
+        handleCancel();
+        reset();
+        toast.success("User created Successfully");
+      })
+      .catch((errors) => {
+        console.log(errors);
+        if (errors.response && errors.response.status === 440) {
+          toast.warn("Session Timed Out");
+          localStorage.clear();
+          navigate("/");
 
-    //       return;
-    //     }
-    //   });
+          return;
+        }
+      });
   };
   useEffect(() => {
     listGroups();
@@ -118,6 +120,27 @@ function CreateUser({ handleCancel }) {
         <div className="container-fluid p-5">
           <div className="form mt-3 create-user">
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* {isLDAP === 1 && (
+                <div className="row">
+                  <div className="col">
+                    <div className="">
+                      <label>
+                        {" "}
+                        User ID
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter User Name"
+                          {...register("user_id", {
+                            required: "Required",
+                          })}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )} */}
+
               <div className="row">
                 <div className="col">
                   <div className="">

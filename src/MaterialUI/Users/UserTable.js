@@ -22,6 +22,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { TableRows } from "@mui/icons-material";
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import WarningIcon from "@mui/icons-material/Warning";
+import { useDispatch } from "react-redux";
+import { userEdit } from "../../reducers/UserReducer";
 function UserTable() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -63,6 +65,7 @@ function UserTable() {
     setPage(newPage);
   };
 
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const style = {
     position: "absolute",
@@ -83,6 +86,7 @@ function UserTable() {
   const handleEdit = (e) => {
     console.log(e);
     setSelectedRow(e);
+    dispatch(userEdit(selectedRow));
   };
   const handleDelete = (e) => {
     setOpenModal(true);
@@ -104,10 +108,13 @@ function UserTable() {
     )
       .then((response) => {
         console.log(response);
+        setOpenModal(false);
         toast.success("User Deleted Successfully");
         listUsers();
       })
       .catch((errors) => {
+        setOpenModal(false);
+
         console.log(errors);
         if (errors.response && errors.response.status === 440) {
           toast.warn("Session Timed Out");

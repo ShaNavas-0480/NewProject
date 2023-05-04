@@ -8,9 +8,12 @@ import APIService from "../../services/APIService";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import moment from "moment/moment";
+import { useSelector } from "react-redux";
 
 function EditUser({ handleCancel }) {
   const token = localStorage.getItem("token");
+  const userReducer = useSelector((state) => state.userReducer);
+  console.log(userReducer);
   const {
     register,
     handleSubmit,

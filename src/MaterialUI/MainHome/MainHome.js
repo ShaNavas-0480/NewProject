@@ -38,12 +38,15 @@ import Group from "../Groups/GroupHome";
 import Users from "../../components/UserManagement/Users";
 import GroupHome from "../Groups/GroupHome";
 import UserHome from "../Users/UserHome";
+import { Dropdown, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 function MainHome() {
   const [open, setOpen] = useState(false);
   const [openList, setOpenList] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  const username = localStorage.getItem("username");
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -132,6 +135,11 @@ function MainHome() {
       setIsShowGroups(true);
     }
   };
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -157,8 +165,25 @@ function MainHome() {
                   Logo
                 </Typography>
               </Toolbar>
-              <div className="user-profile me-4">
-                <AccountCircleIcon />
+              <div className="user-profile ">
+                {/* <Dropdown>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    <AccountCircleIcon />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item>{username}</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown> */}
+                <NavDropdown
+                  title={<AccountCircleIcon />}
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item>{username}</NavDropdown.Item>
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               </div>
             </div>
           </AppBar>
