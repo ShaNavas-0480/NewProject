@@ -261,7 +261,7 @@ function MainHome() {
                     <ManageHistoryIcon />
                   </ListItemIcon>
                   <ListItemText
-                    primary={"Configuration"}
+                    primary={"System Config"}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
