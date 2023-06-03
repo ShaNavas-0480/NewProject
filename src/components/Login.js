@@ -50,7 +50,7 @@ function Login() {
         localStorage.setItem("token", token);
         localStorage.setItem("username", loginCredentials.username);
         setShowSpinner(false);
-        navigate("/home");
+        navigate("/groups");
       })
       .catch((errors) => {
         console.log(errors);

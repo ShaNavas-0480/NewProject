@@ -19,8 +19,26 @@ import "@fontsource/roboto/700.css";
 import MainHome from "./MaterialUI/MainHome/MainHome";
 import CreateGroup from "./MaterialUI/Groups/CreateGroup";
 import "react-datepicker/dist/react-datepicker.css";
+import "antd/dist/reset.css";
+import MainLayout from "./AntdUI/MainLayout";
+import GroupHome from "./MaterialUI/Groups/GroupHome";
+import UserHome from "./MaterialUI/Users/UserHome";
 
 function App() {
+  const router = [
+    {
+      path: "/groups",
+      element: <GroupHome />,
+    },
+    {
+      path: "/users",
+      element: <UserHome />,
+    },
+    {
+      path: "/home",
+      element: <MainHome />,
+    },
+  ];
   return (
     <>
       <div className="main-container">
@@ -47,8 +65,18 @@ function App() {
               />
             </Route> */}
             {/* Material UI navigations */}
-            <Route path="/home" element={<MainHome />} />
-            <Route path="/group/add" element={<CreateGroup />} />
+            {/* <Route path="/home" element={<MainHome />} /> */}
+            {/* <Route path="/group/add" element={<CreateGroup />} /> */}
+            {/* Antd Navigation */}
+            {/* <Route path="/home" element={<MainLayout />} /> */}
+            {router.map((val) => (
+              <Route
+                path={val.path}
+                key={val.path}
+                // element={val.element}
+                element={val.element}
+              />
+            ))}
           </Routes>
         </Router>
       </div>

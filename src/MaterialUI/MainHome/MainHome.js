@@ -40,9 +40,21 @@ import GroupHome from "../Groups/GroupHome";
 import UserHome from "../Users/UserHome";
 import { Dropdown, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import HubIcon from "@mui/icons-material/Hub";
+import SettingsAccessibilityIcon from "@mui/icons-material/SettingsAccessibility";
+import PaidIcon from "@mui/icons-material/Paid";
+import TerminalIcon from "@mui/icons-material/Terminal";
+import { Icon } from "@iconify/react";
+import NetworkConfigMain from "../SystemConfig/NetworkConfig/NetworkConfigMain";
+import SystemConfigHeaderMain from "../SystemConfig/SystemConfigHeader/SystemConfigHeaderMain";
+import MerchantConfigHome from "../SystemConfig/MerchantConfig/MerchantConfigHome";
+import TransactionTypeMain from "../SystemConfig/TransactionType/TransactionTypeMain";
+import TerminalConfigHome from "../SystemConfig/TerminalConfig/TerminalConfigHome";
+import { useEffect } from "react";
 function MainHome() {
-  const [open, setOpen] = useState(false);
-  const [openList, setOpenList] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [openUserList, setOpenUserList] = useState(false);
+  const [openSystemConfigList, setOpenSystemConfiglist] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -52,8 +64,11 @@ function MainHome() {
     setOpen(false);
   };
 
-  const handleList = () => {
-    setOpenList(!openList);
+  const handleUserList = () => {
+    setOpenUserList(!openUserList);
+  };
+  const handleSystemConfigList = () => {
+    setOpenSystemConfiglist(!openSystemConfigList);
   };
   const handleClick = () => {
     setOpen(!open);
@@ -126,13 +141,80 @@ function MainHome() {
   const [isShowGroups, setIsShowGroups] = useState(true);
   const [isShowUsers, setIsShowUsers] = useState(false);
 
+  const [isShowNetworkConfig, setIsshowNetworkConfig] = useState(false);
+  const [isShowMerchantConfig, setIsshowMerchantConfig] = useState(false);
+  const [isShowTerminalConfig, setIsshowTerminalConfig] = useState(false);
+  const [isShowHeader, setIsshowHeader] = useState(false);
+  const [isShowTransactionType, setIsshowTransactionType] = useState(false);
+
   const handleMenuClick = (value) => {
-    if (value === "users") {
-      setIsShowGroups(false);
-      setIsShowUsers(true);
-    } else if (value === "groups") {
-      setIsShowUsers(false);
-      setIsShowGroups(true);
+    console.log(value);
+
+    switch (value) {
+      case "networkConfig":
+        console.log("yes");
+        setIsshowMerchantConfig(false);
+        setIsShowGroups(false);
+        setIsShowUsers(false);
+        setIsshowHeader(false);
+        setIsshowTerminalConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowNetworkConfig(true);
+        break;
+      case "transactionType":
+        setIsshowMerchantConfig(false);
+        setIsShowGroups(false);
+        setIsShowUsers(false);
+        setIsshowHeader(false);
+        setIsshowTerminalConfig(false);
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(true);
+        break;
+      case "header":
+        setIsshowMerchantConfig(false);
+        setIsShowGroups(false);
+        setIsShowUsers(false);
+        setIsshowTerminalConfig(false);
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowHeader(true);
+        break;
+      case "merchantConfig":
+        setIsShowGroups(false);
+        setIsShowUsers(false);
+        setIsshowTerminalConfig(false);
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowHeader(false);
+        setIsshowMerchantConfig(true);
+        break;
+      case "terminalConfig":
+        setIsShowGroups(false);
+        setIsShowUsers(false);
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowHeader(false);
+        setIsshowMerchantConfig(false);
+        setIsshowTerminalConfig(true);
+        break;
+      case "users":
+        setIsShowGroups(false);
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowHeader(false);
+        setIsshowMerchantConfig(false);
+        setIsshowTerminalConfig(false);
+        setIsShowUsers(true);
+        break;
+      case "groups":
+        setIsshowNetworkConfig(false);
+        setIsshowTransactionType(false);
+        setIsshowHeader(false);
+        setIsshowMerchantConfig(false);
+        setIsshowTerminalConfig(false);
+        setIsShowUsers(false);
+        setIsShowGroups(true);
+        break;
     }
   };
   const navigate = useNavigate();
@@ -141,6 +223,7 @@ function MainHome() {
     navigate("/");
   };
 
+  useEffect(() => {}, [isShowUsers]);
   return (
     <>
       <div className="main-drawer">
@@ -205,16 +288,16 @@ function MainHome() {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={handleList}>
+              <ListItemButton onClick={handleUserList}>
                 <ListItemIcon>
                   <ManageAccountsIcon />
                 </ListItemIcon>
                 <ListItemText primary="User Management" />
-                {openList ? <ExpandLess /> : <ExpandMore />}
+                {openUserList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse
                 className="side-menu-list-collapse"
-                in={openList}
+                in={openUserList}
                 timeout="auto"
                 unmountOnExit
               >
@@ -243,29 +326,72 @@ function MainHome() {
               </Collapse>
             </List>
             <List>
-              <ListItem disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
+              <ListItemButton onClick={handleSystemConfigList}>
+                <ListItemIcon>
+                  <ManageHistoryIcon />
+                </ListItemIcon>
+                <ListItemText primary="System Config" />
+                {openSystemConfigList ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse
+                className="side-menu-list-collapse"
+                in={openSystemConfigList}
+                timeout="auto"
+                unmountOnExit
+              >
+                <List component="div" disablePadding>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("networkConfig")}
                   >
-                    <ManageHistoryIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={"System Config"}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
+                    <ListItemIcon>
+                      <HubIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Network Config" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("header")}
+                  >
+                    <ListItemIcon>
+                      <SettingsAccessibilityIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Header" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("transactionType")}
+                  >
+                    <ListItemIcon>
+                      <PaidIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Transaction Type" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("terminalConfig")}
+                  >
+                    <ListItemIcon>
+                      <TerminalIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Terminal Config" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="side-sub-menu-list"
+                    sx={{ pl: 4 }}
+                    onClick={() => handleMenuClick("merchantConfig")}
+                  >
+                    <ListItemIcon>
+                      <Icon icon="icon-park-solid:shop" />
+                    </ListItemIcon>
+                    <ListItemText primary="Merchant Config" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
               <ListItem disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
@@ -295,6 +421,11 @@ function MainHome() {
             <DrawerHeader />
             {isShowGroups && <GroupHome />}
             {isShowUsers && <UserHome />}
+            {isShowNetworkConfig && <NetworkConfigMain />}
+            {isShowHeader && <SystemConfigHeaderMain />}
+            {isShowMerchantConfig && <MerchantConfigHome />}
+            {isShowTransactionType && <TransactionTypeMain />}
+            {isShowTerminalConfig && <TerminalConfigHome />}
           </Box>
         </Box>
       </div>
