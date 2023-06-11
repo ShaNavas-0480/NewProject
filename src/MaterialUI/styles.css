@@ -1,0 +1,39 @@
+.main-drawer .css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  background-color: white;
+  color: black;
+}
+
+.main-drawer .css-1191obr-MuiPaper-root-MuiAppBar-root {
+  background-color: white;
+  color: black;
+}
+.button-primary.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background: white;
+  color: #0578ed;
+}
+.button-primary.css-sghohy-MuiButtonBase-root-MuiButton-root:hover {
+  background: #0578ed;
+  color: white;
+}
+.side-sub-menu-list.css-13eg511-MuiButtonBase-root-MuiListItemButton-root {
+  padding-left: 24px;
+}
+
+.side-menu-drawer.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
+  width: 250px;
+}
+
+.side-menu-list .css-cveggr-MuiListItemIcon-root {
+  min-width: 49px;
+}
+.user-profile {
+  margin: 0 5rem 0 1rem;
+}
+
+.user-profile a {
+  color: black;
+}
+.user-profile a.dropdown-item {
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+}
