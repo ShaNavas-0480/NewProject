@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Paper } from "@mui/material";
+import { Box, Modal, Paper } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -6,11 +6,12 @@ import CreateUser from "./CreateUser";
 import UserTable from "./UserTable";
 import { Content } from "antd/es/layout/layout";
 import { Icon } from "@iconify/react";
-import { Layout, Menu, Slider, theme } from "antd";
+import { Button, Layout, Menu, Slider, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Header } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import SideBarAntd from "../../AntdUI/SideBarAntd";
+import SideBarpro from "../../AntdUI/SideBarpro";
 function UserHome() {
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -63,61 +64,65 @@ function UserHome() {
           Logo
         </Header>
         <Layout>
-          <SideBarAntd
+          {/* <SideBarAntd
             collapsed={collapsed}
             handleMenuCollapse={handleMenuCollapse}
-          />
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              minHeight: 280,
-              background: colorBgContainer,
-            }}
-          >
-            <div className="p-3">
-              {showUserCreate ? (
-                <>
-                  <div className="create-button  ">
-                    <div className="d-flex justify-content-between p-3">
-                      <h3>Create User</h3>
-                      <Button
-                        variant="contained"
-                        className="button-primary"
-                        startIcon={<ArrowBackIosIcon />}
-                        onClick={() => {
-                          setShowUserCreate(false);
-                        }}
-                      >
-                        Back
-                      </Button>
+            selectedKey={"2"}
+          /> */}
+          <div className="d-flex">
+            <SideBarpro />
+            <Content
+              style={{
+                margin: "24px 16px",
+                padding: 24,
+                minHeight: 280,
+                background: colorBgContainer,
+              }}
+            >
+              <div className="p-3">
+                {showUserCreate ? (
+                  <>
+                    <div className="create-button  ">
+                      <div className="d-flex justify-content-between p-3">
+                        <h3>Create User</h3>
+                        <Button
+                          variant="contained"
+                          className="button-primary"
+                          startIcon={<ArrowBackIosIcon />}
+                          onClick={() => {
+                            setShowUserCreate(false);
+                          }}
+                        >
+                          Back
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                  <CreateUser handleCancel={handleCancel} />
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <div className="create-button  ">
-                    <div className="d-flex justify-content-between p-3">
-                      <h3>Users</h3>
-                      <Button
-                        variant="contained"
-                        className="button-primary"
-                        startIcon={<AddIcon />}
-                        onClick={() => {
-                          setShowUserCreate(true);
-                        }}
-                      >
-                        Create
-                      </Button>
+                    <CreateUser handleCancel={handleCancel} />
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <div className="create-button  ">
+                      <div className="d-flex justify-content-between p-3">
+                        <h3>Users</h3>
+                        <Button
+                          variant="contained"
+                          className="button-primary"
+                          startIcon={<AddIcon />}
+                          onClick={() => {
+                            setShowUserCreate(true);
+                          }}
+                        >
+                          Create
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                  <UserTable isRefreshTableData={isRefreshTableData} />
-                </>
-              )}
-            </div>
-          </Content>
+                    <UserTable isRefreshTableData={isRefreshTableData} />
+                  </>
+                )}
+              </div>
+            </Content>
+          </div>
         </Layout>
       </Layout>
 

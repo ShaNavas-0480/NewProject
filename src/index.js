@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 root.render(
   // <QueryClientProvider client={queryClient}>
-  // <ProSidebarProvider>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </ProSidebarProvider>
+  <ProSidebarProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ProSidebarProvider>
   // </QueryClientProvider>
 );
 

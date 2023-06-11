@@ -10,6 +10,7 @@ import { Content, Header } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import { Box, Modal } from "@mui/material";
 import SideBarAntd from "../../AntdUI/SideBarAntd";
+import SideBarpro from "../../AntdUI/SideBarpro";
 function GroupHome() {
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -58,79 +59,83 @@ function GroupHome() {
           Logo
         </Header>
         <Layout>
-          <SideBarAntd
+          {/* <SideBarAntd
             collapsed={collapsed}
             handleMenuCollapse={handleMenuCollapse}
-          />
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              minHeight: 280,
-              background: colorBgContainer,
-            }}
-          >
-            <div>
-              {/* <Paper elevation={12} square> */}
-              <div className="p-3">
-                {showGroupCreate ? (
-                  <>
-                    <div className="create-button  ">
-                      <div className="d-flex justify-content-between p-3">
-                        <h3>Create Group</h3>
-                        <Button
-                          variant="contained"
-                          className="button-primary"
-                          startIcon={<ArrowBackIosIcon />}
-                          onClick={() => {
-                            setShowGroupCreate(false);
-                          }}
-                        >
-                          Back
-                        </Button>
+            selectedKey={"1"}
+          /> */}
+          <div className="d-flex">
+            <SideBarpro />
+            <Content
+              style={{
+                margin: "24px 16px",
+                padding: 24,
+                minHeight: 280,
+                background: colorBgContainer,
+              }}
+            >
+              <div>
+                {/* <Paper elevation={12} square> */}
+                <div className="p-3">
+                  {showGroupCreate ? (
+                    <>
+                      <div className="create-button  ">
+                        <div className="d-flex justify-content-between p-3">
+                          <h3>Create Group</h3>
+                          <Button
+                            variant="contained"
+                            className="button-primary"
+                            startIcon={<ArrowBackIosIcon />}
+                            onClick={() => {
+                              setShowGroupCreate(false);
+                            }}
+                          >
+                            Back
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                    <CreateGroup />
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <div className="create-button  ">
-                      <div className="d-flex justify-content-between p-3">
-                        <h3>Groups</h3>
-                        <Button
-                          variant="contained"
-                          className="button-primary"
-                          startIcon={<AddIcon />}
-                          // onClick={() => {
-                          //   setShowGroupCreate(true);
-                          // }}
-                          onClick={handleOpen}
-                        >
-                          Create
-                        </Button>
+                      <CreateGroup />
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <div className="create-button  ">
+                        <div className="d-flex justify-content-between p-3">
+                          <h3>Groups</h3>
+                          <Button
+                            variant="contained"
+                            className="button-primary"
+                            startIcon={<AddIcon />}
+                            // onClick={() => {
+                            //   setShowGroupCreate(true);
+                            // }}
+                            onClick={handleOpen}
+                          >
+                            Create
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                    <GroupTable isRefreshTableData={isRefreshTableData} />
-                  </>
-                )}
+                      <GroupTable isRefreshTableData={isRefreshTableData} />
+                    </>
+                  )}
+                </div>
+                {/* </Paper> */}
+                <Modal
+                  open={openModal}
+                  // onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <CreateGroup
+                      handleClose={handleClose}
+                      handleTableDataRefresh={handleTableDataRefresh}
+                    />
+                  </Box>
+                </Modal>
               </div>
-              {/* </Paper> */}
-              <Modal
-                open={openModal}
-                // onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <CreateGroup
-                    handleClose={handleClose}
-                    handleTableDataRefresh={handleTableDataRefresh}
-                  />
-                </Box>
-              </Modal>
-            </div>
-          </Content>
+            </Content>
+          </div>
         </Layout>
       </Layout>
     </>
