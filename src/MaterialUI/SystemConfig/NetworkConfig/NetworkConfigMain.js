@@ -75,17 +75,42 @@ function NetworkConfigMain() {
       dataIndex: "ISO_VERSION_DESC",
       key: "ISO_VERSION_DESC",
     },
+
     {
-      title: "MAC Version",
+      title: "ISO Header",
+      dataIndex: "ISO_Header_Field",
+      key: "ISO_Header_Field",
+    },
+    {
+      title: "Message Type",
+      dataIndex: "Message_Type_Field",
+      key: "Message_Type_Field",
+    },
+
+    {
+      title: "MAC Field",
       dataIndex: "MAC_Fields",
       key: "MAC_Fields",
     },
     {
-      title: "Signature",
+      title: "Signature Field",
       dataIndex: "Signature_Fields",
       key: "Signature_Fields",
     },
+
     {
+      title: "Dynamic Key Exchange",
+      dataIndex: "DynamicKey_Fields",
+      key: "DynamicKey_Fields",
+    },
+
+    {
+      title: "Attala Varient",
+      dataIndex: "Attala_Varient_Fields",
+      key: "Attala_Varient_Fields",
+    },
+
+    /*{
       title: "IP",
       dataIndex: "NW_ENV_IP",
       key: "NW_ENV_IP",
@@ -94,7 +119,7 @@ function NetworkConfigMain() {
       title: "Port",
       dataIndex: "NW_ENV_PORT",
       key: "NW_ENV_PORT",
-    },
+    },*/
     {
       title: "Actions",
       dataIndex: "actions",
@@ -120,11 +145,13 @@ function NetworkConfigMain() {
       key: 1,
       Network_ID: 1,
       Network_Description: "MADA",
-      ISO_HEADER: "1",
+      ISO_VERSION_DESC: "ISO8583-97",
+      ISO_Header_Field: "Y",
+      Message_Type_Field: "ISO",
       MAC_Fields: "0,1,2,3,4,5,11,12,39,47,49,55,59",
       Signature_Fields: "7,24,39,94,96",
-      NW_ENV_IP: "LOCALHOST",
-      NW_ENV_PORT: 8583,
+      DynamicKey_Fields: "Y",
+      Attala_Varient_Fields: 0,
     },
   ];
 

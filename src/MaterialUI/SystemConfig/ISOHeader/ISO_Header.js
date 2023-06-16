@@ -65,10 +65,29 @@ function ISO_Header() {
       dataIndex: "ISO_Version_ID",
       key: "ISO_Version_ID",
     },
+
     {
-      title: "ISO Description",
+      title: "Network",
+      dataIndex: "Network_Detail",
+      key: "Network_Detail",
+    },
+
+    {
+      title: "ISO Version",
       dataIndex: "ISO_Version_Description",
       key: "ISO_Version_Description",
+    },
+
+    {
+      title: "Header Type",
+      dataIndex: "Header_Type_Description",
+      key: "Header_Type_Description",
+    },
+
+    {
+      title: "Header Value",
+      dataIndex: "Header_Value_Description",
+      key: "Header_Value_Description",
     },
 
     {
@@ -94,11 +113,17 @@ function ISO_Header() {
   const dataSource = [
     {
       ISO_Version_ID: 1,
+      Network_Detail: "MADA",
       ISO_Version_Description: "ISO8583",
+      Header_Type_Description: "ATM",
+      Header_Value_Description: "ISO00004099900",
     },
     {
       ISO_Version_ID: 2,
+      Network_Detail: "MADA",
       ISO_Version_Description: "ISO8583-97",
+      Header_Type_Description: "POS",
+      Header_Value_Description: "ISO00044099900",
     },
   ];
 

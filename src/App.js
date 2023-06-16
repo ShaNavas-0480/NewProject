@@ -26,6 +26,9 @@ import UserHome from "./MaterialUI/Users/UserHome";
 import NetworkConfigMain from "./MaterialUI/SystemConfig/NetworkConfig/NetworkConfigMain";
 import NetworkEnvDetialsHome from "./MaterialUI/SystemConfig/NetworkEnvDetails/NetworkEnvDetialsHome";
 import ISO_Header from "./MaterialUI/SystemConfig/ISOHeader/ISO_Header";
+import TransactionTypeMain from "./MaterialUI/SystemConfig/TransactionType/TransactionTypeMain";
+import TerminalConfigHome from "./MaterialUI/SystemConfig/TerminalConfig/TerminalConfigHome";
+import MerchantConfigHome from "./MaterialUI/SystemConfig/MerchantConfig/MerchantConfigHome";
 
 function App() {
   const router = [
@@ -52,6 +55,18 @@ function App() {
     {
       path: "/iso-header",
       element: <ISO_Header />,
+    },
+    {
+      path: "/transaction-type",
+      element: <TransactionTypeMain />,
+    },
+    {
+      path: "/terminal-config",
+      element: <TerminalConfigHome />,
+    },
+    {
+      path: "/merchant-config",
+      element: <MerchantConfigHome />,
     },
   ];
   return (

@@ -71,7 +71,7 @@ function UserHome() {
     {
       title: "Department",
       dataIndex: "department",
-      key: "email",
+      key: "department",
     },
     {
       title: "Created By",
