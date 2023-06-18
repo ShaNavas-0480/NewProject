@@ -27,7 +27,7 @@ import AntdTable from "../../../AntdUI/AntdTable/AntdTable";
 import SideBarPro from "../../../AntdUI/SideBarPro";
 import AntdHeader from "../../../AntdUI/AntdHeader";
 
-function ISO_Header() {
+function SecurityKeysHome() {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -61,35 +61,70 @@ function ISO_Header() {
   };
   const columns = [
     {
-      title: "ISO ID",
-      dataIndex: "ISO_Version_ID",
-      key: "ISO_Version_ID",
+      title: "ID",
+      dataIndex: "Network_ID",
+      key: "Network_ID",
+    },
+    {
+      title: "Description",
+      dataIndex: "Network_Description",
+      key: "Network_Description",
+    },
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "location",
     },
 
     {
-      title: "Network",
-      dataIndex: "Network_Detail",
-      key: "Network_Detail",
+      title: "Index",
+      dataIndex: "index",
+      key: "country",
+    },
+    {
+      title: "length",
+      dataIndex: "length",
+      key: "currency",
     },
 
     {
-      title: "ISO Version",
-      dataIndex: "ISO_Version_Description",
-      key: "ISO_Version_Description",
+      title: "Default TVR",
+      dataIndex: "def_tvr",
+      key: "def_tvr",
+    },
+    {
+      title: "Amount Authorize",
+      dataIndex: "amount_authorize",
+      key: "Signature_Fields",
     },
 
     {
-      title: "Header Type",
-      dataIndex: "Header_Type_Description",
-      key: "Header_Type_Description",
+      title: "Other Amount",
+      dataIndex: "other_amount",
+      key: "other_amount",
     },
 
     {
-      title: "Header Value",
-      dataIndex: "Header_Value_Description",
-      key: "Header_Value_Description",
+      title: " Currency Count",
+      dataIndex: "terminal_Currency_count",
+      key: "_Currency_count",
+    },
+    {
+      title: " UnPredictable Number",
+      dataIndex: "terminal_Currency_count",
+      key: "_Currency_count",
     },
 
+    /*{
+      title: "IP",
+      dataIndex: "NW_ENV_IP",
+      key: "NW_ENV_IP",
+    },
+    {
+      title: "Port",
+      dataIndex: "NW_ENV_PORT",
+      key: "NW_ENV_PORT",
+    },*/
     {
       title: "Actions",
       dataIndex: "actions",
@@ -112,18 +147,16 @@ function ISO_Header() {
   };
   const dataSource = [
     {
-      ISO_Version_ID: 1,
-      Network_Detail: "MADA",
-      ISO_Version_Description: "ISO8583",
-      Header_Type_Description: "ATM",
-      Header_Value_Description: "ISO00004099900",
-    },
-    {
-      ISO_Version_ID: 2,
-      Network_Detail: "MADA",
-      ISO_Version_Description: "ISO8583-97",
-      Header_Type_Description: "POS",
-      Header_Value_Description: "ISO00044099900",
+      key: 1,
+      Network_ID: 1,
+      Network_Description: "MADA",
+      ISO_VERSION_DESC: "ISO8583-97",
+      ISO_Header_Field: "Y",
+      Message_Type_Field: "ISO",
+      MAC_Fields: "0,1,2,3,4,5,11,12,39,47,49,55,59",
+      Signature_Fields: "7,24,39,94,96",
+      DynamicKey_Fields: "Y",
+      Attala_Varient_Fields: 0,
     },
   ];
 
@@ -191,18 +224,8 @@ function ISO_Header() {
                       {" "}
                       <div className="create-button  ">
                         <div className="d-flex justify-content-between p-3">
-                          <h4 className="main-title">ISO Header</h4>
+                          <h4 className="main-title"> Key</h4>
                           <div>
-                            <Select
-                              placeholder="select network"
-                              // onChange={handleChange}
-                              optionLabelProp="label"
-                            >
-                              <Option value="1" label="Choose">
-                                Choose
-                              </Option>
-                            </Select>{" "}
-                            &nbsp; &nbsp;
                             <Button
                               // type=""
                               className="button-primary me-3"
@@ -212,6 +235,7 @@ function ISO_Header() {
                             >
                               Create
                             </Button>
+
                             <Button
                               danger
                               // type=""
@@ -249,7 +273,7 @@ function ISO_Header() {
         </Layout>
       </Layout>
       <SideDrawer
-        title=" ISO Header"
+        title=" Key"
         isOpenDrawer={isOpenDrawer}
         handleCloseDrawer={handleCloseDrawer}
       >
@@ -257,8 +281,8 @@ function ISO_Header() {
           <Row gutter={16}>
             <Col xxl={12} xl={12} lg={12} md={12}>
               <Form.Item
-                label="ISO ID"
-                name="ISO_Version_ID"
+                label="Terminal  ID"
+                name="NW_ENV_ID"
                 rules={[
                   {
                     required: true,
@@ -266,13 +290,29 @@ function ISO_Header() {
                   },
                 ]}
               >
-                <Input placeholder="Enter ISO ID" />
+                <Input placeholder="Enter Terminal ID" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Description"
+                name="Network_Description"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Terminal Description" />
               </Form.Item>
             </Col>
             <Col xxl={12} xl={12} lg={12} md={12}>
               <Form.Item
-                label="ISO Description"
-                name="ISO_Version_Description"
+                label="Location "
+                name="location"
                 rules={[
                   {
                     required: true,
@@ -280,7 +320,113 @@ function ISO_Header() {
                   },
                 ]}
               >
-                <Input placeholder="Enter ISO Description" />
+                <Input placeholder="Enter Location" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Country"
+                name="country"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Country" />
+              </Form.Item>
+            </Col>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Currency"
+                name="currency"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Currency" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Default TVR"
+                name="default_tvr"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Default TVR" />
+              </Form.Item>
+            </Col>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Amount Authorize"
+                name="amount_authorize"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Amount Authorize" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Other Amount "
+                name="PAN_CHAR"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Other Amount" />
+              </Form.Item>
+            </Col>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Terminal Currency Code"
+                name="PAN_OFFSET"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Terminal Currency Code" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xxl={12} xl={12} lg={12} md={12}>
+              <Form.Item
+                label="Un Predictable Number "
+                name="PAN_CHAR"
+                rules={[
+                  {
+                    required: true,
+                    message: "required",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Un Predictable Number" />
               </Form.Item>
             </Col>
           </Row>
@@ -331,4 +477,4 @@ function ISO_Header() {
   );
 }
 
-export default ISO_Header;
+export default SecurityKeysHome;

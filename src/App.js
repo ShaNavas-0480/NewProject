@@ -29,6 +29,15 @@ import ISO_Header from "./MaterialUI/SystemConfig/ISOHeader/ISO_Header";
 import TransactionTypeMain from "./MaterialUI/SystemConfig/TransactionType/TransactionTypeMain";
 import TerminalConfigHome from "./MaterialUI/SystemConfig/TerminalConfig/TerminalConfigHome";
 import MerchantConfigHome from "./MaterialUI/SystemConfig/MerchantConfig/MerchantConfigHome";
+import SecurityKeysHome from "./MaterialUI/SecurityParam/SecurityKeys/SecurityKeysHome";
+import RSAKeysHome from "./MaterialUI/SecurityParam/RSAKeys/RSAKeysHome";
+import PINParamHome from "./MaterialUI/SecurityParam/PINParam/PINParamHome";
+import CardsHome from "./MaterialUI/Cards/CardsHome";
+import ProjectHome from "./MaterialUI/Project/ProjectHome";
+import TestManagementHome from "./MaterialUI/TestManagement/TestManagementHome";
+import CreateTestHome from "./MaterialUI/TestManagement/CreateTest/CreateTestHome";
+import RunTestHome from "./MaterialUI/TestManagement/RunTest/RunTestHome";
+import ReportHome from "./MaterialUI/Report/ReportHome";
 
 function App() {
   const router = [
@@ -67,6 +76,42 @@ function App() {
     {
       path: "/merchant-config",
       element: <MerchantConfigHome />,
+    },
+    {
+      path: "/key",
+      element: <SecurityKeysHome />,
+    },
+    {
+      path: "/rsa-keys",
+      element: <RSAKeysHome />,
+    },
+    {
+      path: "/pin-param",
+      element: <PINParamHome />,
+    },
+    {
+      path: "/cards",
+      element: <CardsHome />,
+    },
+    {
+      path: "/project",
+      element: <ProjectHome />,
+    },
+    {
+      path: "/test-management",
+      element: <TestManagementHome />,
+    },
+    {
+      path: "/create-test",
+      element: <CreateTestHome />,
+    },
+    {
+      path: "/run-test",
+      element: <RunTestHome />,
+    },
+    {
+      path: "/report",
+      element: <ReportHome />,
     },
   ];
   return (

@@ -103,6 +103,69 @@ function SideBarPro({ collapsed, handleCollapse }) {
               Merchant Config
             </MenuItem>
           </SubMenu>
+          <SubMenu
+            icon={<Icon icon="ic:baseline-security" />}
+            label="Security Params"
+            rootStyles={{
+              ["& > ." + menuClasses.button]: {
+                // backgroundColor: "red",
+                color: "#9f0099",
+                "&:hover": {
+                  backgroundColor: "#eecef9",
+                },
+              },
+              ["." + menuClasses.subMenuContent]: {
+                backgroundColor: "#3890e7",
+              },
+            }}
+          >
+            <MenuItem component={<Link to="/key" />}> Keys</MenuItem>
+            <MenuItem component={<Link to="/rsa-keys" />}> RSA Keys</MenuItem>
+            <MenuItem component={<Link to="/pin-param" />}> PIN Param</MenuItem>
+          </SubMenu>
+          <MenuItem
+            icon={<Icon icon="wpf:bank-cards" />}
+            component={<Link to="/cards" />}
+          >
+            {" "}
+            Cards
+          </MenuItem>
+          <MenuItem
+            icon={<Icon icon="file-icons:microsoft-project" />}
+            component={<Link to="/project" />}
+          >
+            {" "}
+            Project
+          </MenuItem>
+          <SubMenu
+            icon={<Icon icon="carbon:test-tool" />}
+            label="Test Management"
+            rootStyles={{
+              ["& > ." + menuClasses.button]: {
+                // backgroundColor: "red",
+                color: "#9f0099",
+                "&:hover": {
+                  backgroundColor: "#eecef9",
+                },
+              },
+              ["." + menuClasses.subMenuContent]: {
+                backgroundColor: "#3890e7",
+              },
+            }}
+          >
+            <MenuItem component={<Link to="/create-test" />}>
+              {" "}
+              Create Test
+            </MenuItem>
+            <MenuItem component={<Link to="/run-test" />}> Run Test </MenuItem>
+          </SubMenu>
+          <MenuItem
+            icon={<Icon icon="fluent-mdl2:bookmark-report" />}
+            component={<Link to="/report" />}
+          >
+            {" "}
+            Report
+          </MenuItem>
         </Menu>
       </Sidebar>
     </>

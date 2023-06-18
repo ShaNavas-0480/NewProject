@@ -71,7 +71,6 @@ function AntdTable({ columns, dataSource }) {
         columns={columns}
         className={tableCSS}
       />
-      ;
     </>
   );
 }
